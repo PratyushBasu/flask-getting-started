@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Flash Card{% endblock %}
+
+{% block content %}
+    <h1>Flash Card: {{ card_no }}</h1>
+    Question: {{ card.question }} <br>
+    Answer: {{ card.answer }}
+    <p>
+        <a href="{{ url_for('welcome') }}">Home Page</a><br><br>
+        {% if card_no > 1 %}
+            <button>
+                <a href="{{ url_for('card_view', idx=card_no-1) }}">Previous Card</a>
+            </button>
+        {% endif %}
+        {% if card_no < max_card_no %}
+            <button>
+                <a href="{{ url_for('card_view', idx=card_no+1) }}">Next Card</a>
+            </button>
+        {% endif %}
+    </p>
+    <p>
+        <button>
+            <a href="{{ url_for('del_card', idx=card_no) }}">Delete this card</a>
+        </button>
+    </p>
+{% endblock %}

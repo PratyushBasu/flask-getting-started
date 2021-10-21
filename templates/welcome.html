@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <h1>Welcome to my page!</h1>
+    <p>
+        This is the demo application for the course
+        <em>Getting Started with Flask</em>
+        on <a href="http://www.pluralsight.com">Pluralsight</a>
+    </p>
+    <img src="/static/flasklogo.png" width="400" height="200">
+    <p>
+        {{ message }}
+    </p>
+    <p>
+        <a href="{{ url_for('add_card') }}"> Create a flash card</a>
+    </p>
+    <h2>Flash Cards</h2>
+    <ul>
+        {% for card in cards %}
+            <li>
+                <a href="{{ url_for('card_view', idx = loop.index) }}">{{ card.question }}</a>
+                <!-- jinja2 : loop.index and loop.index0  -->
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
